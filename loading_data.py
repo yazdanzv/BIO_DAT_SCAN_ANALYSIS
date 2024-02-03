@@ -39,3 +39,4 @@ class LoadData:
                         temp = np.array(temp)
                         temp_img.append(copy.deepcopy(temp))
                 self.images_small.append(np.array(copy.deepcopy(temp_img)))
+
