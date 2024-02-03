@@ -16,7 +16,7 @@ class LoadData:
     def load_data(self):
         # BIG folder
         for root, folders, files in os.walk(PATH_BIG):
-            temp_img = np.array([])
+            temp_img = list()
             if len(list(files)) != 0:
                 for file in list(files):
                     if ".dcm" in file.lower():
@@ -24,12 +24,12 @@ class LoadData:
                         dicom_file.file_meta.TransferSyntaxUID = pydicom.uid.ImplicitVRLittleEndian
                         temp = dicom_file.pixel_array
                         temp = np.array(temp)
-                        temp_img = np.append(temp_img, copy.deepcopy(temp))
-                self.images_big.append(copy.deepcopy(temp_img))
+                        temp_img.append(copy.deepcopy(temp))
+                self.images_big.append(np.array(copy.deepcopy(temp_img)))
 
         # SMALL folders
         for root, folders, files in os.walk(PATH_SMALL):
-            temp_img = np.array([])
+            temp_img = list()
             if len(list(files)) != 0:
                 for file in list(files):
                     if ".dcm" in file.lower():
@@ -37,5 +37,5 @@ class LoadData:
                         dicom_file.file_meta.TransferSyntaxUID = pydicom.uid.ImplicitVRLittleEndian
                         temp = dicom_file.pixel_array
                         temp = np.array(temp)
-                        temp_img = np.append(temp_img, copy.deepcopy(temp))
-                self.images_small.append(copy.deepcopy(temp_img))
+                        temp_img.append(copy.deepcopy(temp))
+                self.images_small.append(np.array(copy.deepcopy(temp_img)))
